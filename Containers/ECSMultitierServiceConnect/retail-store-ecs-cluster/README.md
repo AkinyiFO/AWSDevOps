@@ -8,7 +8,7 @@ Great news! AnyCompany Stores MVP launch was successful, and the business is exp
 
 The monolithic application is becoming difficult to manage with multiple teams. It's time to decompose it into microservices - separate services for UI, Orders, and Checkout components that can communicate with each other efficiently.
 
-[UI, with Orders and Checkout service architecture](./microservices-architecture)
+![UI, with Orders and Checkout service architecture](./microservices-architecture)
 
 Your challenge is to enable seamless communication between these services while maintaining the simplicity and reliability that made the MVP successful.
 
@@ -28,4 +28,4 @@ Alternative options for configuring inter-service communication within Amazon EC
 
 In this section, we'll enable ECS Service Connect in our cluster by deploying three additional microservices that the UI service will communicate with:
 
-[AWS ECS service Connect Architecture](./service-connect-architecture)
+![AWS ECS service Connect Architecture](./service-connect-architecture)
