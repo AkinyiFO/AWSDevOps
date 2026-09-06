@@ -1,0 +1,69 @@
+{
+    "family": "retail-store-ecs-checkout",
+    "executionRoleArn": "arn:aws:iam::${AWS-ACCOUNT-ID}:role/checkoutEcsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::${AWS-ACCOUNT-ID}:role/retailStoreEcsTaskRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "containerDefinitions": [
+        {
+            "name": "application",
+            "image": "public.ecr.aws/aws-containers/retail-store-sample-checkout:1.2.3",
+            "portMappings": [
+                {
+                    "name": "application",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "linuxParameters": {
+                "initProcessEnabled": true
+            },
+            "environment": [
+                {
+                    "name": "RETAIL_CHECKOUT_PERSISTENCE_PROVIDER",
+                    "value": "redis"
+                },
+                 {
+                    "name": "RETAIL_CHECKOUT_ENDPOINTS_ORDERS",
+                    "value": "http://orders"
+                }
+            ],
+            "secrets": [
+                {
+                    "name": "RETAIL_CHECKOUT_PERSISTENCE_REDIS_URL",
+                    "valueFrom": "arn:aws:ssm:us-east-1:${AWS-ACCOUNT-ID}:parameter/retail-store-ecs/checkout/redis-endpoint"
+                }
+            ],
+            "healthCheck": {
+                "command": [
+                    "CMD-SHELL",
+                    "curl -f http://localhost:8080/health || exit 1"
+                ],
+                "interval": 10,
+                "timeout": 5,
+                "retries": 3,
+                "startPeriod": 30
+            },
+            "versionConsistency": "disabled",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "retail-store-ecs-tasks",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "checkout-service"
+                }
+            }
+        }
+    ]
+}
