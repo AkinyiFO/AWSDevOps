@@ -2,6 +2,8 @@
 
 ## Important
 
+[Source](https://catalog.us-east-1.prod.workshops.aws/workshops/7eaa1783-1592-4bdc-b579-630e53f00afa/en-US/40-lp-events/40-networking)
+
 You must have completed the following chapters as pre-requisites for this lab: [Deploy an MVP on Amazon ECS](https://catalog.us-east-1.prod.workshops.aws/workshops/7eaa1783-1592-4bdc-b579-630e53f00afa/en-US/40-lp-events/30-basic/)
 
 Great news! AnyCompany Stores MVP launch was successful, and the business is expanding rapidly. The development team has grown from 3 to 15 engineers, organized into specialized squads: Frontend, Orders, and Checkout teams. Each squad wants to develop and deploy their components independently.
