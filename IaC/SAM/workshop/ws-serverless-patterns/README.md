@@ -1,3 +1,5 @@
+[Source](https://catalog.us-east-1.prod.workshops.aws/workshops/76bc5278-3f38-46e8-b306-f0bfda551f5a/en-US/module2/sam-python/datastore)
+
 # 1 - Create data store
 
 Your application needs a place to store user data. For that, you'll create a Users table in DynamoDB.
